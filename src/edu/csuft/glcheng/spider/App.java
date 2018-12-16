@@ -46,9 +46,14 @@ public class App {
 				for (Element e : es) {
 					Film f = new Film();
 					// 每一部影片
+					String id = e.select("em").text();
 					Element t = e.select(".title").first();
+					String info = e.select(".bd p").text();
+					String rating = e.select(".star .rating_num").text();
 					String num = e.select(".star span").last().text();
-					System.out.println(t.text() + ", " + num.subSequence(0, num.length()-3));
+					String quote = e.select(".inq").text();
+					String poster = e.select("img").attr("src");
+					System.out.println(id+", "+t.text()+", "+info+", "+rating + ", " + num.subSequence(0, num.length()-3)+", "+quote+", "+poster);
 				
 //					f.id;
 //					f.title;
