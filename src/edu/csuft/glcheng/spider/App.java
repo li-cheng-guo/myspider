@@ -46,18 +46,32 @@ public class App {
 				for (Element e : es) {
 					Film f = new Film();
 					// 每一部影片
-					String id = e.select("em").text();
-					Element t = e.select(".title").first();
-					String info = e.select(".bd p").text();
-					String rating = e.select(".star .rating_num").text();
+					
+					f.id = Integer.parseInt(e.select(".pic em").first().text());
+					f.poster = e.select("img").first().attr("src");
+					f.info = e.select(".bd p").first().text();
+					f.title = e.select(".title").first().text();
+					f.rating = Double.parseDouble(e.select(".rating_num").first().text());
 					String num = e.select(".star span").last().text();
-					String quote = e.select(".inq").text();
-					String poster = e.select("img").attr("src");
-					System.out.println(id+", "+t.text()+", "+info+", "+rating + ", " + num.subSequence(0, num.length()-3)+", "+quote+", "+poster);
+					f.num = Integer.parseInt(num.substring(0, num.length()-3));
+					f.quote = e.select(".inq").first().text();
+					
+					System.out.println(f);
+					list.add(f);
+					
+					
+					
+//					String id = e.select("em").text();
+//					Element t = e.select(".title").first();
+//					String info = e.select(".bd p").text();
+//					String rating = e.select(".star .rating_num").text();
+//					String num = e.select(".star span").last().text();
+//					String quote = e.select(".inq").text();
+//					String poster = e.select("img").attr("src");
+//					System.out.println(id+", "+t.text()+", "+info+", "+rating + ", " + num.subSequence(0, num.length()-3)+", "+quote+", "+poster);
 				
 //					f.id;
 //					f.title;
-					list.add(f);
 				}
 			
 //			String title = doc.title();
